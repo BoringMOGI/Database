@@ -180,7 +180,7 @@ namespace GoogleSheetsToUnity
         {
             if (DateTime.Now > SpreadsheetManager.Config.gdr.nextRefreshTime)
             {
-                Debug.Log("Refreshing Token");
+                //Debug.Log("Refreshing Token");
 
                 WWWForm f = new WWWForm();
                 f.AddField("client_id", SpreadsheetManager.Config.CLIENT_ID);
