@@ -9,7 +9,7 @@ public class Sheet : MonoBehaviour
     [SerializeField] string sheetId;
     [SerializeField] string sheetName;
 
-    [SerializeField] public Item[] items { get; private set; }
+    [SerializeField] public Item[] items;
 
     public event System.Action OnCompleteDownload;
     

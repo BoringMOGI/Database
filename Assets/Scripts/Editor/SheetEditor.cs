@@ -64,7 +64,7 @@ public class SheetEditor : Editor
         EditorGUILayout.LabelField("이름", labelStyle, GUILayout.MinWidth(60), GUILayout.MaxWidth(150));
         EditorGUILayout.LabelField("등급", labelStyle, GUILayout.Width(50));
         EditorGUILayout.LabelField("부위", labelStyle, GUILayout.Width(50));
-        EditorGUILayout.LabelField("직업", labelStyle, GUILayout.Width(50));
+        EditorGUILayout.LabelField("직업", labelStyle, GUILayout.Width(60));
         EditorGUILayout.LabelField("레벨", labelStyle, GUILayout.Width(50));
         EditorGUILayout.LabelField("티어", labelStyle, GUILayout.Width(40));
 
@@ -82,7 +82,7 @@ public class SheetEditor : Editor
             EditorGUILayout.LabelField(item.name,               GUILayout.MinWidth(60), GUILayout.MaxWidth(150));
             EditorGUILayout.LabelField(item.grade.ToString(),   labelStyle, GUILayout.Width(50));
             EditorGUILayout.LabelField(item.part.ToString(),    labelStyle, GUILayout.Width(50));
-            EditorGUILayout.LabelField(item.job.ToString(),     labelStyle, GUILayout.Width(50));
+            EditorGUILayout.LabelField(item.job.ToString(),     labelStyle, GUILayout.Width(60));
             EditorGUILayout.LabelField(item.level.ToString(),   labelStyle, GUILayout.Width(50));
             EditorGUILayout.LabelField(string.Format("Tier{0}", item.tier), labelStyle, GUILayout.Width(40));
 
@@ -98,5 +98,6 @@ public class SheetEditor : Editor
     private void OnCompleteDownload()
     {
         EditorUtility.DisplayDialog("Complete", "데이터 다운로드를 성공했습니다.", "확인");
+        EditorUtility.SetDirty(sheet);
     }
 }
