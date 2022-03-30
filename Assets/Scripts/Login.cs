@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.IO;
+using System.Collections.Generic;
 
 public class Login : MonoBehaviour
 {
@@ -20,13 +21,35 @@ public class Login : MonoBehaviour
     
     [SerializeField] InputField idField;
     [SerializeField] InputField pwField;
+    [SerializeField] Text errorText;
     [SerializeField] WebData data;
 
     delegate void Callback(WebData data);   // string을 받는 콜백.
     bool isNetworking;                      // 현재 통신 중인가?
 
+    class Item
+    {
+
+    }
+
     private void Start()
     {
+        errorText.gameObject.SetActive(false);
+        idField.onValueChanged.AddListener((str) => { errorText.gameObject.SetActive(false); });
+        pwField.onValueChanged.AddListener((str) => { errorText.gameObject.SetActive(false); });
+
+        Item item1 = new Item();
+        Item item2 = new Item();
+        Item item3 = new Item();
+
+        List<Item> list = new List<Item>();
+        list.Add(item1);
+        list.Add(item2);
+        list.Add(item3);
+
+        list.Remove(item2);
+
+
         /*
         string json = JsonUtility.ToJson(data, true);
         string path = string.Format("{0}/{1}.txt", Application.dataPath, "savefile");
@@ -46,6 +69,11 @@ public class Login : MonoBehaviour
         */
     }
 
+    void OnChangeValueID(string str)
+    {
+
+    }
+
     public void OnLogin()
     {
         if (isNetworking)
@@ -57,8 +85,8 @@ public class Login : MonoBehaviour
         form.AddField("pw", pwField.text);
 
         StartCoroutine(WebPost(form, (data) => {
-            Debug.Log($"결과 : {data.result}");
-            Debug.Log($"메세지 : {data.msg}");
+            errorText.gameObject.SetActive(true);
+            errorText.text = data.msg;
         }));
     }
     public void OnSignUp()
@@ -82,6 +110,8 @@ public class Login : MonoBehaviour
             else if(data.result == "fail")
             {
                 Debug.Log($"회원 가입 실패 : {data.msg}");
+                errorText.gameObject.SetActive(true);
+                errorText.text = data.msg;
             }
         }));
     }
