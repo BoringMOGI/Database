@@ -68,6 +68,12 @@ public class Login : MonoBehaviour
         }
         */
     }
+    private void OnEnable()
+    {
+        idField.text = string.Empty;
+        pwField.text = string.Empty;
+        errorText.gameObject.SetActive(false);
+    }
 
     void OnChangeValueID(string str)
     {
