@@ -16,11 +16,14 @@ public class SignUpAgree : MonoBehaviour
     }
 
     [SerializeField] Agree agree;
+    [SerializeField] SignUpInfo info;
+
+    public bool Agree1 => agree.force.isOn;
+    public bool Agree2 => agree.select.isOn;
 
 
     // 1.toggle에는 체크 유무를 아는 bool 변수가 있다. (isOn)
     // 2.toogle이 눌렸을 때 반응하는 이벤트 함수가 있다.
-
     private void OnEnable()
     {
         agree.all.isOn = false;
@@ -47,7 +50,8 @@ public class SignUpAgree : MonoBehaviour
             return;
         }
 
-        agree.errorText.gameObject.SetActive(false);
-        Debug.Log("동의 완료");
+        // 동의 완료. 
+        gameObject.SetActive(false);
+        info.gameObject.SetActive(true);
     }
 }

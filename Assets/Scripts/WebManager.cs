@@ -45,6 +45,8 @@ public class WebManager : MonoBehaviour
 
     public bool Post(Callback callback, string order, params StringFair[] postDatas)
     {
+        Debug.Log($"Post : {order}, isNetworking : {isNetworking}");
+        
         if (isNetworking)
             return false;
 
